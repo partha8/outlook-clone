@@ -16,4 +16,5 @@ export type Email = {
 export type EmailsState = {
   emails: Email[];
   total: Number;
+  emailsLoading: Boolean;
 };
