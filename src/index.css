@@ -6,14 +6,21 @@
 
 :root {
   --accent-color: #e54065;
-  --background-color: #f4f5f9;
+  --background-color: #F4F6FA;
   --border-color: #cfd2dc;
   --text-color: #636363;
-  --filter-button: #e1e4ea;
+  --filter-button: #e1e5ea;
   --read-background: #f2f2f2;
 }
 
 body {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: sans-serif;
   background: var(--background-color);
+}
+
+.btn {
+  background: none;
+  outline: none;
+  border: none;
+  cursor: pointer;
 }

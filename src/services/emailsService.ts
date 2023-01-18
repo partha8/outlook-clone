@@ -9,7 +9,7 @@ export const getEmails = createAsyncThunk(
     try {
       const response = await axios.get(`${API_URL}${pageNumber}`);
       if (response.status === 200) {
-        return response.data.list;
+        return { emails: response.data.list, total: response.data.total };
       }
     } catch (error: any) {
       console.error(error);

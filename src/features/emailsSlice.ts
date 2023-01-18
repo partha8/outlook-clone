@@ -18,10 +18,11 @@ const emailsSlice = createSlice({
         state.emailsLoading = true;
       })
       .addCase(getEmails.fulfilled, (state, action) => {
-        state.emails = action.payload.map((email: Email) => {
+        state.emails = action.payload?.emails.map((email: Email) => {
           return { ...email, favourite: false, unread: true, read: false };
         });
         state.emailsLoading = false;
+        state.total = action.payload?.total;
       });
   },
 });

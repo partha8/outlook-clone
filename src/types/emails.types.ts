@@ -1,20 +1,20 @@
 export type Email = {
-  id: String;
+  id: string;
   from: {
-    email: String;
-    name: String;
+    email: string;
+    name: string;
   };
 
-  date: Number;
-  subject: String;
-  short_description: String;
-  read: Boolean;
-  favourite: Boolean;
-  unread: Boolean;
+  date: number;
+  subject: string;
+  short_description: string;
+  read: boolean;
+  favourite: boolean;
+  unread: boolean;
 };
 
 export type EmailsState = {
   emails: Email[];
-  total: Number;
-  emailsLoading: Boolean;
+  total: number;
+  emailsLoading: boolean;
 };

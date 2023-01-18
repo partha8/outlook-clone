@@ -1,0 +1,22 @@
+.filter-section {
+    display: flex;
+    gap: 1.5rem;
+    font-weight: bold;
+    align-items: center;
+}
+
+.filter-btn {
+    font-weight: bold;
+    text-transform: capitalize;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+}
+
+.filter-btn-container {
+    display: flex;
+    /* gap: 1rem; */
+}
+
+.active-btn {
+    background: var(--filter-button);
+}
