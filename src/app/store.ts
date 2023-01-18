@@ -1,7 +1,10 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
+import emailsReducer from "../features/emailsSlice";
 
 export const store = configureStore({
-  reducer: {},
+  reducer: {
+    emails: emailsReducer,
+  },
 });
 
 export type AppDispatch = typeof store.dispatch;

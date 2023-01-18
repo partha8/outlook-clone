@@ -4,4 +4,16 @@
   box-sizing: border-box;
 }
 
-:root {}
+:root {
+  --accent-color: #e54065;
+  --background-color: #f4f5f9;
+  --border-color: #cfd2dc;
+  --text-color: #636363;
+  --filter-button: #e1e4ea;
+  --read-background: #f2f2f2;
+}
+
+body {
+  font-family: 'Times New Roman', Times, serif;
+  background: var(--background-color);
+}
