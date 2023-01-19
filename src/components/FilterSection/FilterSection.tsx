@@ -10,6 +10,13 @@ export const FilterSection = ({ sortBy, setSortBy }: Props) => {
       Filter By:
       <div className="filter-btn-container">
         <button
+          onClick={() => setSortBy("All")}
+          className={`btn filter-btn ${sortBy === "All" && "active-btn"}`}
+        >
+          All Emails
+        </button>
+
+        <button
           onClick={() => setSortBy("Unread")}
           className={`btn filter-btn ${sortBy === "Unread" && "active-btn"}`}
         >

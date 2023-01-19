@@ -2,6 +2,9 @@ import { Email } from "../../types/emails.types";
 import "./email-component.css";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
+import { useAppDispatch } from "../../app/hooks";
+import { getEmail } from "../../services/emailsService";
+import { setReadStatus } from "../../features/emailsSlice";
 
 dayjs.extend(localizedFormat);
 
@@ -16,9 +19,17 @@ export const EmailComponent = ({
   unread,
 }: Email) => {
   const dateValue = dayjs(date).format("DD/MM/YYYY LT");
-  
+
+  const dispatch = useAppDispatch();
+
   return (
-    <div className={`email-card ${read ? "read" : "unread"}`}>
+    <div
+      onClick={() => {
+        dispatch(getEmail({ subject, date }));
+        dispatch(setReadStatus(id));
+      }}
+      className={`email-card ${read ? "read" : "unread"}`}
+    >
       <section className="avatar">{from.name[0]}</section>
       <section className="email-contents">
         <p>

@@ -3,36 +3,17 @@ import { Email } from "../types/emails.types";
 export const useSortedEmails = (emails: Email[], sortBy: string) => {
   let newEmails = [...emails];
 
+  let localData = JSON.parse(localStorage.getItem("email-clone") || "{}");
+
   if (sortBy === "Unread") {
-    newEmails = newEmails.filter((email: Email) => {
-      if (email.unread) {
-        return email;
-      }
-    });
+    newEmails = newEmails.filter((email) => email.unread);
   }
   if (sortBy === "Read") {
-    newEmails = newEmails.filter((email: Email) => {
-      if (email.read) {
-        return email;
-      }
-    });
+    newEmails = localData?.readEmails;
   }
   if (sortBy === "Favourites") {
-    newEmails = newEmails.filter((email: Email) => {
-      if (email.favourite) {
-        return email;
-      }
-    });
+    newEmails = localData?.favouriteEmails;
   }
-  const pageNumbers = [];
-  let totalPages = 0;
-  if (newEmails.length) {
-    totalPages = 1 + newEmails.length / 10;
-  }
-
-  for (let i = 1; i <= totalPages; i++) {
-    pageNumbers.push(i);
-  }
-  // return { sortedEmails: newEmails, pageNumbers };
+  
   return newEmails;
 };
