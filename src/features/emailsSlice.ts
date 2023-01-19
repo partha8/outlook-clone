@@ -34,6 +34,9 @@ const emailsSlice = createSlice({
         return email;
       });
     },
+    closeSelectedEmail(state) {
+      state.selectedEmail = null;
+    },
   },
   extraReducers(builder) {
     builder
@@ -52,5 +55,5 @@ const emailsSlice = createSlice({
   },
 });
 
-export const { setReadStatus } = emailsSlice.actions;
+export const { setReadStatus, closeSelectedEmail } = emailsSlice.actions;
 export default emailsSlice.reducer;

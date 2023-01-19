@@ -22,7 +22,7 @@ if (!localStorage.getItem("email-clone")) {
 }
 
 export const App = () => {
-  const { emails, total, selectedEmail } = useAppSelector(
+  const { emails, total } = useAppSelector(
     (store) => store.emails
   );
   const dispatch = useAppDispatch();

@@ -9,6 +9,7 @@
     max-height: 100vh;
     overflow: auto;
     margin-top: 3rem;
+    position: relative;
 }
 
 .email-body-contents {
@@ -25,4 +26,20 @@
 
 .email-body-contents p {
     margin-bottom: 1rem;
+}
+
+.close-btn {
+    position: absolute;
+    font-size: 1.2rem;
+    font-weight: bold;
+    top: 1rem;
+    right: 1rem;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+
+}
+
+.close-btn:hover {
+    background: #e5406417
 }
