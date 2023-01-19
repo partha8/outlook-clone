@@ -17,7 +17,6 @@ const emailsSlice = createSlice({
       let reademail: Email;
       state.emails = state.emails.map((email) => {
         let localData = JSON.parse(localStorage.getItem("email-clone") || "{}");
-        console.log(localData);
         if (action.payload === email.id) {
           reademail = { ...email, read: true, unread: false };
 
@@ -47,7 +46,9 @@ const emailsSlice = createSlice({
         state.total = action.payload?.total;
       })
 
-      .addCase(getEmail.fulfilled, (state, action) => {});
+      .addCase(getEmail.fulfilled, (state, action) => {
+        state.selectedEmail = action.payload;
+      });
   },
 });
 

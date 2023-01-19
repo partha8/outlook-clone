@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { Email } from "../types/emails.types";
+import { Email, SelectedEmail } from "../types/emails.types";
 import axios from "axios";
-import { API_URL } from "../constants";
+import { API_URL, EMAIL_URL } from "../constants";
 
 export const getEmails = createAsyncThunk(
   "emails/getEmails",
@@ -27,11 +27,8 @@ export const getEmails = createAsyncThunk(
             )
           ) {
             email = { ...email, read: true, unread: false };
-          }
-
-          else {
+          } else {
             email = { ...email, unread: true, read: false };
-
           }
           return email;
         });
@@ -46,5 +43,21 @@ export const getEmails = createAsyncThunk(
 
 export const getEmail = createAsyncThunk(
   "emails/getEmail",
-  async ({ subject, date }: { subject: string; date: number }, thunkAPI) => {}
+  async (
+    {
+      subject,
+      date,
+      id,
+      name,
+    }: { subject: string; date: number; id: string; name: string },
+    thunkAPI
+  ) => {
+    try {
+      const response = await axios.get(`${EMAIL_URL}${id}`);
+      return { name,subject, id, date, body: response.data.body } as SelectedEmail;
+    } catch (error: any) {
+      console.error(error);
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
 );

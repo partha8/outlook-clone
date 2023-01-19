@@ -73,7 +73,8 @@ export const App = () => {
         </section>
       </section>
 
-      {selectedEmail && <EmailBodyComponent />}
+      {/* {selectedEmail && <EmailBodyComponent />} */}
+      <EmailBodyComponent />
     </main>
   );
 };

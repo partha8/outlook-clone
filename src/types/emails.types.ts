@@ -18,6 +18,7 @@ export type SelectedEmail = {
   date: number;
   id: string;
   body: string;
+  name: string;
 };
 
 export type EmailsState = {

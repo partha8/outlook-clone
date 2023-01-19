@@ -2,7 +2,7 @@ import { Email } from "../../types/emails.types";
 import "./email-component.css";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
-import { useAppDispatch } from "../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { getEmail } from "../../services/emailsService";
 import { setReadStatus } from "../../features/emailsSlice";
 
@@ -20,15 +20,19 @@ export const EmailComponent = ({
 }: Email) => {
   const dateValue = dayjs(date).format("DD/MM/YYYY LT");
 
+  const { selectedEmail } = useAppSelector((store) => store.emails);
+
   const dispatch = useAppDispatch();
 
   return (
     <div
       onClick={() => {
-        dispatch(getEmail({ subject, date }));
-        dispatch(setReadStatus(id));
+        dispatch(getEmail({ subject, date, id, name: from.name }));
+        !read && dispatch(setReadStatus(id));
       }}
-      className={`email-card ${read ? "read" : "unread"}`}
+      className={`email-card ${read ? "read" : "unread"} ${
+        selectedEmail?.id === id && "selected-email"
+      } `}
     >
       <section className="avatar">{from.name[0]}</section>
       <section className="email-contents">
