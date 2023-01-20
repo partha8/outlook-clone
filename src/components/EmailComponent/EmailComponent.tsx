@@ -27,7 +27,7 @@ export const EmailComponent = ({
   return (
     <div
       onClick={() => {
-        dispatch(getEmail({ subject, date, id, name: from.name }));
+        dispatch(getEmail({ subject, date, id, name: from.name, favourite }));
         !read && dispatch(setReadStatus(id));
       }}
       className={`email-card ${read ? "read" : "unread"} ${
@@ -46,7 +46,10 @@ export const EmailComponent = ({
           Subject: <span>{subject}</span>
         </p>
         <p>{short_description}</p>
-        <p>{dateValue}</p>
+        <p>
+          {dateValue}{" "}
+          {favourite && <span className="favourite-tag">Favourite</span>}{" "}
+        </p>
       </section>
     </div>
   );

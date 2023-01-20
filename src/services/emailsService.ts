@@ -49,12 +49,26 @@ export const getEmail = createAsyncThunk(
       date,
       id,
       name,
-    }: { subject: string; date: number; id: string; name: string },
+      favourite,
+    }: {
+      subject: string;
+      date: number;
+      id: string;
+      name: string;
+      favourite: boolean | null | "" | undefined;
+    },
     thunkAPI
   ) => {
     try {
       const response = await axios.get(`${EMAIL_URL}${id}`);
-      return { name,subject, id, date, body: response.data.body } as SelectedEmail;
+      return {
+        name,
+        subject,
+        id,
+        date,
+        body: response.data.body,
+        favourite,
+      } as SelectedEmail;
     } catch (error: any) {
       console.error(error);
       return thunkAPI.rejectWithValue(error);

@@ -2,7 +2,10 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import "./email-body-component.css";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
-import { closeSelectedEmail } from "../../features/emailsSlice";
+import {
+  closeSelectedEmail,
+  setFavourtieStatus,
+} from "../../features/emailsSlice";
 dayjs.extend(localizedFormat);
 export const EmailBodyComponent = () => {
   const { selectedEmail } = useAppSelector((store) => store.emails);
@@ -23,7 +26,24 @@ export const EmailBodyComponent = () => {
         <section className="avatar">{selectedEmail?.name[0]}</section>
 
         <section className="email-body-contents">
-          <h2>{selectedEmail?.subject}</h2>
+          <div className="email-header">
+            <h2>{selectedEmail?.subject}</h2>
+            <span
+              onClick={() =>
+                dispatch(
+                  setFavourtieStatus({
+                    id: selectedEmail?.id,
+                    favourite: selectedEmail?.favourite ? false : true,
+                  })
+                )
+              }
+            >
+              {" "}
+              {selectedEmail?.favourite
+                ? "Remove from favourites"
+                : "Mark as favourite"}{" "}
+            </span>
+          </div>
           <p>{dateValue}</p>
           <section
             dangerouslySetInnerHTML={{ __html: selectedEmail?.body }}

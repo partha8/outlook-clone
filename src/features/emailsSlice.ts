@@ -34,8 +34,44 @@ const emailsSlice = createSlice({
         return email;
       });
     },
+
     closeSelectedEmail(state) {
       state.selectedEmail = null;
+    },
+
+    setFavourtieStatus(state, action) {
+      let favouriteemail: Email;
+      state.emails = state.emails.map((email) => {
+        let localData = JSON.parse(localStorage.getItem("email-clone") || "{}");
+        if (action.payload.id === email.id) {
+          favouriteemail = { ...email, favourite: action.payload.favourite };
+
+          localData = {
+            favouriteEmails: action.payload.favourite
+              ? localData.favouriteEmails
+                ? [...localData.favouriteEmails, favouriteemail]
+                : [favouriteemail]
+              : localData.favouriteEmails.filter(
+                  (mail: Email) => mail.id !== action.payload.id
+                ),
+            readEmails: localData.readEmails,
+          };
+
+          localStorage.setItem("email-clone", JSON.stringify(localData));
+
+          return favouriteemail;
+        }
+        return email;
+      });
+
+      state.selectedEmail = {
+        subject: state.selectedEmail!.subject,
+        date: state.selectedEmail!.date,
+        favourite: action.payload.favourite,
+        name: state.selectedEmail!.name,
+        id: state.selectedEmail!.id,
+        body: state.selectedEmail!.body,
+      };
     },
   },
   extraReducers(builder) {
@@ -55,5 +91,6 @@ const emailsSlice = createSlice({
   },
 });
 
-export const { setReadStatus, closeSelectedEmail } = emailsSlice.actions;
+export const { setReadStatus, closeSelectedEmail, setFavourtieStatus } =
+  emailsSlice.actions;
 export default emailsSlice.reducer;

@@ -16,15 +16,12 @@ if (!localStorage.getItem("email-clone")) {
     JSON.stringify({
       readEmails: [],
       favouriteEmails: [],
-      unreadEmails: [],
     })
   );
 }
 
 export const App = () => {
-  const { emails, total } = useAppSelector(
-    (store) => store.emails
-  );
+  const { emails, total } = useAppSelector((store) => store.emails);
   const dispatch = useAppDispatch();
 
   const [pageNumber, setPageNumber] = useState<number>(1);
@@ -72,8 +69,6 @@ export const App = () => {
             })}
         </section>
       </section>
-
-      {/* {selectedEmail && <EmailBodyComponent />} */}
       <EmailBodyComponent />
     </main>
   );

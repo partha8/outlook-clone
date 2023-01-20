@@ -19,6 +19,7 @@ export type SelectedEmail = {
   id: string;
   body: string;
   name: string;
+  favourite: boolean | null | "" | undefined;
 };
 
 export type EmailsState = {

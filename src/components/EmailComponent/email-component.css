@@ -32,6 +32,12 @@
     font-weight: bold;
 }
 
+.favourite-tag {
+    font-weight: normal;
+    color: var(--accent-color);
+    margin-left: 2rem;
+}
+
 .unread {
     background: #ffffff;
 }

@@ -17,6 +17,21 @@
     flex-direction: column;
 }
 
+.email-header {
+    display: flex;
+    justify-content: space-between;
+    margin-right: 1rem;
+    align-items: center;
+}
+
+.email-header span {
+    background: var(--accent-color);
+    color: #ffffff;
+    padding: 0.3rem 0.8rem;
+    border-radius: 2rem;
+    cursor: pointer;
+}
+
 .email-body-container h2 {
     font-size: 2rem;
     font-weight: bold;
@@ -32,8 +47,8 @@
     position: absolute;
     font-size: 1.2rem;
     font-weight: bold;
-    top: 1rem;
-    right: 1rem;
+    top: 0.5rem;
+    right: 0.5rem;
     width: 2rem;
     height: 2rem;
     border-radius: 50%;
