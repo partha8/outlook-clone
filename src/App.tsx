@@ -21,7 +21,9 @@ if (!localStorage.getItem("email-clone")) {
 }
 
 export const App = () => {
-  const { emails, total } = useAppSelector((store) => store.emails);
+  const { emails, total, emailsLoading } = useAppSelector(
+    (store) => store.emails
+  );
   const dispatch = useAppDispatch();
 
   const [pageNumber, setPageNumber] = useState<number>(1);
@@ -48,9 +50,17 @@ export const App = () => {
       <section className="container">
         <FilterSection sortBy={sortBy} setSortBy={setSortBy} />
 
-        {sortedEmails?.map((email: Email) => {
-          return <EmailComponent key={email.id} {...email} />;
-        })}
+        {emailsLoading ? (
+          <div className="spinner-container">
+            <div className="bt-spinner"></div>
+          </div>
+        ) : (
+          <>
+            {sortedEmails?.map((email: Email) => {
+              return <EmailComponent key={email.id} {...email} />;
+            })}
+          </>
+        )}
 
         <section>
           {sortBy === "All" &&
