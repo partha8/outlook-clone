@@ -33,15 +33,7 @@ export const App = () => {
     dispatch(getEmails(pageNumber));
   }, [pageNumber]);
 
-  const pageNumbers = [];
-
-  if (total) {
-    const totalPages = 1 + total / 10;
-
-    for (let i = 1; i <= totalPages; i++) {
-      pageNumbers.push(i);
-    }
-  }
+  const totalPages = Math.floor(total / 10) + 1;
 
   const sortedEmails = useSortedEmails(emails, sortBy);
 
@@ -64,16 +56,16 @@ export const App = () => {
 
         <section>
           {sortBy === "All" &&
-            pageNumbers.map((number) => {
+            [...Array(totalPages)].map((_, i) => {
               return (
                 <button
-                  key={number}
-                  onClick={() => setPageNumber(number)}
+                  key={i}
+                  onClick={() => setPageNumber(i + 1)}
                   className={`btn pagination-btn ${
-                    pageNumber === number && "active-btn"
+                    pageNumber === i + 1 && "active-btn"
                   }`}
                 >
-                  {number}
+                  {i + 1}
                 </button>
               );
             })}
